@@ -1,0 +1,73 @@
+<h1>A Quick Puzzle to Test Your Problem Solving</h1>
+
+<p>A short game sheds light on government policy, corporate America and why no one likes to be wrong.</p>
+
+<p>Here's how it works:</p>
+
+<p>We’ve chosen a rule that some sequences of three numbers obey — and some do not. Your job is to guess what the rule is.</p>
+
+<p>We’ll start by telling you that the sequence 2, 4, 8 obeys the rule:</p>
+
+<ul>
+  <li>2, 4, 8 Obeys the rule</li>
+</ul>
+
+<p>Now it’s your turn. Enter a number sequence in the boxes below, and we’ll tell you whether it satisfies the rule or not. You can test as many sequences as you want.</p>
+
+<ul>
+<% @list.each do |guess| %>
+  <li>
+    <%= guess.first_number %>,
+    <%= guess.second_number %>,
+    <%= guess.third_number %>,
+    <% if guess.first_number.to_i < guess.second_number.to_i && guess.second_number.to_i < guess.third_number.to_i %>
+    Yes!
+    <% else %>
+    No.
+    <% end %>
+  </li>
+<% end %>
+</ul>
+
+<p>Enter a sequence:</p>
+
+<form action="/all_guesses">
+  <label for="first">First number:</label>
+  <input name="first_num" id="first" type="text" placeholder="The first number">
+
+  <label for="second">Second number:</label>
+  <input name="second_num" id="second" type="text" placeholder="The second number">
+
+  <label for="third">Third number:</label>
+  <input name="third_num" id="third" type="text" placeholder="The third number">
+
+  <button>
+    Check
+  </button>
+</form>
+
+<hr>
+
+<p>
+  When you think you know the rule, describe it in words below and then submit your answer.
+
+  <strong>Make sure you're right; you won't get a second chance.</strong>
+</p>
+
+<form action="/show_answer">
+  <label for="answer">
+    Your answer:
+  </label>
+
+  <div>
+    <textarea name="response" id="answer" placeholder="Enter your answer"></textarea>
+  </div>
+
+  <button>
+    I think I know it
+  </button>
+</form>
+
+<hr>
+
+<a href="/">Reset</a>
